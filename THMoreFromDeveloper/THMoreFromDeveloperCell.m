@@ -15,7 +15,9 @@
 {
     [self.appNameLabel setText:NSLocalizedString(@"Loading...", @"")];
     
+#ifdef DEBUG
     NSLog(@"URL: %@",[NSString stringWithFormat:@"http://itunes.apple.com/lookup?country=%@&lang=%@&id=%@",[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode],[[NSLocale preferredLanguages] objectAtIndex:0],appId]);
+#endif
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?country=%@&lang=%@&id=%@",[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode],[[NSLocale preferredLanguages] objectAtIndex:0],appId]]];
     
@@ -25,7 +27,9 @@
                                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:0
                                                                                       error:nil];
+#ifdef DEBUG
                                NSLog(@"Async JSON: %@", json);
+#endif
                                if (!connectionError && json && json[@"resultCount"]>0) {
                                    [self.appNameIcon sd_setImageWithURL:[NSURL URLWithString:json[@"results"][0][@"artworkUrl100"]] placeholderImage:[UIImage imageNamed:@"emptyIcon.png"]];
                                    [self.appNameLabel setText:json[@"results"][0][@"trackName"]];

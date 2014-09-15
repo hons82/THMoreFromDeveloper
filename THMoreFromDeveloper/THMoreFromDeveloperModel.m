@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 @end
 
 @implementation THMoreFromDeveloperModel {
+    Reachability* reach;
     NSArray *itemsToReturn;
     BOOL isReachable;
 }
@@ -39,7 +40,7 @@ typedef enum : NSUInteger {
 {
     self = [super init];
     if (self) {
-        Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+        reach = [Reachability reachabilityWithHostname:@"www.google.com"];
         // Tell the reachability that we want to be reachable on 3G/EDGE/CDMA
         reach.reachableOnWWAN = YES;
         // Here we set up a NSNotification observer. The Reachability that caused the notification
@@ -52,6 +53,15 @@ typedef enum : NSUInteger {
         [reach startNotifier];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [reach stopNotifier];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setOpenRequestIds:nil];
+    itemsToReturn = nil;
+    _jsonResults = nil;
 }
 
 - (BOOL)loadAppId:(NSString *)appId iTunesRequestType:(ITunesRequestType)type
@@ -74,31 +84,35 @@ typedef enum : NSUInteger {
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:0
-                                                                                      error:nil];
-                               NSLog(@"Async JSON: %@", json);
-                               if (!connectionError && json && json[@"resultCount"]>0) {
-                                   NSArray *tmp = nil;
-                                   switch (type) {
-                                       case ITunesRequestTypeSoftware:
-                                           if ([json[@"results"] count] > 1) {
-                                               tmp = [json[@"results"] subarrayWithRange:NSMakeRange(1, [json[@"results"] count]-1)];
-                                           }
-                                           break;
-                                       default:
-                                           tmp = json[@"results"];
-                                           break;
+                               if (!connectionError) {
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:0
+                                                                                          error:nil];
+#ifdef DEBUG
+                                   NSLog(@"Async JSON: %@", json);
+#endif
+                                   if (!connectionError && json && json[@"resultCount"]>0) {
+                                       NSArray *tmp = nil;
+                                       switch (type) {
+                                           case ITunesRequestTypeSoftware:
+                                               if ([json[@"results"] count] > 1) {
+                                                   tmp = [json[@"results"] subarrayWithRange:NSMakeRange(1, [json[@"results"] count]-1)];
+                                               }
+                                               break;
+                                           default:
+                                               tmp = json[@"results"];
+                                               break;
+                                       }
+                                       if (tmp) {
+                                           [tmp storeArrayToCacheWithKey:appId];
+                                       }
+                                       
+                                       [self.openRequestIds removeObject:appId];
+                                       if ([self.openRequestIds count]==0) {
+                                           [self loadAppIdsFromCache:itemsToReturn ? itemsToReturn : @[appId]];
+                                       }
+                                       
                                    }
-                                   if (tmp) {
-                                       [tmp storeArrayToCacheWithKey:appId];
-                                   }
-                                   
-                                   [self.openRequestIds removeObject:appId];
-                                   if ([self.openRequestIds count]==0) {
-                                       [self loadAppIdsFromCache:itemsToReturn ? itemsToReturn : @[appId]];
-                                   }
-                                   
                                }
                            }];
     return YES;

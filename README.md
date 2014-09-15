@@ -31,6 +31,10 @@ Or copy the `THMoreFromDeveloper/` directory from this repo into your project.
 
 # Features
 
+### V0.0.2
+
+- Bugfix
+
 ### V0.0.1
 
 - Load single AppId [http://itunes.apple.com/lookup?id=833472031&lang=en&country=US](http://itunes.apple.com/lookup?id=833472031&lang=en&country=US) 
