@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  THMoreFromDeveloperCollectionViewController.h
 //  THMoreFromDeveloperExample
 //
 //  Created by Hannes Tribus on 15/09/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface THMoreFromDeveloperCollectionViewController : UICollectionViewController
 
 @end
-
