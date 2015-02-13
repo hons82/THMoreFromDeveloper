@@ -20,7 +20,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THMoreFromDeveloper', '~> 0.2.0'
+pod 'THMoreFromDeveloper', '~> 0.1.0'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
