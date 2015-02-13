@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         	= "THMoreFromDeveloper"
-  s.version      	= "0.0.2"
+  s.version      	= "0.1.0"
   s.summary      	= "Control to show other APPs from a Developer"
   s.homepage     	= "https://github.com/hons82/THMoreFromDeveloper"
   s.license      	= { :type => 'MIT', :file => 'LICENSE.md' }
@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.frameworks   	=  'SystemConfiguration'
   
   #dependencies
-  s.dependency 		'Reachability', '~> 3.1.1'
+  s.dependency 		'Reachability', '~> 3.2'
   s.dependency  	'SDWebImage', '~> 3.7.1'
 end

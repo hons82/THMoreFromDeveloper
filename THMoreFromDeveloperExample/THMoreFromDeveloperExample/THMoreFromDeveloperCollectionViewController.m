@@ -35,12 +35,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //moreFromDeveloperIds = @[@"509943167",@"875251011",@"420636551",@"645859810",@"767319014"];
-    moreFromDeveloperIds = @[@"298910979"];
+#ifdef APPIDS
+    moreFromDeveloperIds = @[@"509943167",@"875251011",@"420636551",@"645859810",@"767319014"];
+#else
+    moreFromDeveloperIds = @[@"833472034"];
+#endif
     self.model = [[THMoreFromDeveloperModel alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(appIdsLoaded:) name:kMoreFromDeleveloperDone object: nil];
     
-    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
     // Tell the reachability that we want to be reachable on 3G/EDGE/CDMA
     reach.reachableOnWWAN = YES;
     // Here we set up a NSNotification observer. The Reachability that caused the notification
@@ -92,7 +95,11 @@
 
 - (void)reachabilityChanged:(NSNotification* )notification
 {
+#ifdef APPIDS
+    [self.model loadAppIds:moreFromDeveloperIds];
+#else
     [self.model loadDeveloperId:moreFromDeveloperIds[0]];
+#endif
 }
 
 @end

@@ -20,7 +20,7 @@ Install with [CocoaPods](http://cocoapods.org) by adding the following to your P
 
 ``` ruby
 platform :ios, '6.1'
-pod 'THMoreFromDeveloper', '~> 0.0.1'
+pod 'THMoreFromDeveloper', '~> 0.2.0'
 ```
 
 **Note**: We follow http://semver.org for versioning the public API.
@@ -31,12 +31,13 @@ Or copy the `THMoreFromDeveloper/` directory from this repo into your project.
 
 # Features
 
-### V0.0.2
+### V0.1.X
+
+- Bugfix/Help [#1](https://github.com/hons82/THMoreFromDeveloper/issues/1)
+
+### V0.0.X
 
 - Bugfix
-
-### V0.0.1
-
 - Load single AppId [http://itunes.apple.com/lookup?id=833472031&lang=en&country=US](http://itunes.apple.com/lookup?id=833472031&lang=en&country=US) 
 - Load a List of AppIds
 - Load all Apps from a Developer[http://itunes.apple.com/lookup?id=833472034&lang=en&country=US&entity=software](http://itunes.apple.com/lookup?id=833472034&lang=en&country=US&entity=software)

@@ -40,7 +40,7 @@ typedef enum : NSUInteger {
 {
     self = [super init];
     if (self) {
-        reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+        reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
         // Tell the reachability that we want to be reachable on 3G/EDGE/CDMA
         reach.reachableOnWWAN = YES;
         // Here we set up a NSNotification observer. The Reachability that caused the notification
