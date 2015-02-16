@@ -10,8 +10,8 @@
 
 @interface THMoreFromDeveloperCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *appNameIcon;
+@property (strong, nonatomic) IBOutlet UILabel *appNameLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *appNameIcon;
 
 - (void)setupWithAppId:(NSString *)appId;
 - (void)setupWithLookUpDictionary:(NSDictionary *)appData;

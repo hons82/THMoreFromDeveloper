@@ -11,8 +11,15 @@
 
 @implementation THMoreFromDeveloperCell
 
-- (void)setupWithAppId:(NSString *)appId
-{
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (void)setupWithAppId:(NSString *)appId {
     [self.appNameLabel setText:NSLocalizedString(@"Loading...", @"")];
     
 #ifdef DEBUG
@@ -40,23 +47,33 @@
                            }];
 }
 
-- (void)setupWithLookUpDictionary:(NSDictionary *)appData
-{
+- (void)setupWithLookUpDictionary:(NSDictionary *)appData {
     [self setupWithLookUpDictionary:appData andPlaceHolderImage:@"emptyIcon.png"];
 }
 
-- (void)setupWithLookUpDictionary:(NSDictionary *)appData andPlaceHolderImage:(NSString *)placeholder
-{
+- (void)setupWithLookUpDictionary:(NSDictionary *)appData andPlaceHolderImage:(NSString *)placeholder {
     [self.appNameIcon sd_setImageWithURL:[NSURL URLWithString:appData[@"artworkUrl100"]] placeholderImage:[UIImage imageNamed:placeholder]];
     [self.appNameLabel setText:appData[@"trackName"]];
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)setupCell {
+    [self setBackgroundColor:[UIColor clearColor]];
+    
+    // Define Image
+    _appNameIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
+    [self addSubview:_appNameIcon];
+    
+    // Define Label
+    _appNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-20, self.frame.size.width, 20)];
+    [_appNameLabel setFont:[UIFont systemFontOfSize:14.0]];
+    [_appNameLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    [self addSubview:_appNameLabel];
+}
+
+- (void)drawRect:(CGRect)rect {
     // TODO http://stackoverflow.com/questions/10563986/uiimage-with-rounded-corners
     [self.appNameIcon.layer setMasksToBounds:YES];
     [self.appNameIcon.layer setCornerRadius:30.0];
 }
-
 
 @end

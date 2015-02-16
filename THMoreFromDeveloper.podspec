@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         	= "THMoreFromDeveloper"
-  s.version      	= "0.1.0"
+  s.version      	= "0.1.1"
   s.summary      	= "Control to show other APPs from a Developer"
   s.homepage     	= "https://github.com/hons82/THMoreFromDeveloper"
   s.license      	= { :type => 'MIT', :file => 'LICENSE.md' }

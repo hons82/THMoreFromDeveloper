@@ -30,14 +30,12 @@ typedef enum : NSUInteger {
 @synthesize jsonResults = _jsonResults;
 @synthesize openRequestIds = _openRequestIds;
 
-- (NSMutableArray *)openRequestIds
-{
+- (NSMutableArray *)openRequestIds {
     if (!_openRequestIds) _openRequestIds = [[NSMutableArray alloc] init];
     return _openRequestIds;
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
@@ -55,8 +53,7 @@ typedef enum : NSUInteger {
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [reach stopNotifier];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setOpenRequestIds:nil];
@@ -64,8 +61,7 @@ typedef enum : NSUInteger {
     _jsonResults = nil;
 }
 
-- (BOOL)loadAppId:(NSString *)appId iTunesRequestType:(ITunesRequestType)type
-{
+- (BOOL)loadAppId:(NSString *)appId iTunesRequestType:(ITunesRequestType)type {
     // If not reachable try to take them from cache
     if (!isReachable) {
         [self loadAppIdsFromCache:itemsToReturn ? itemsToReturn : @[appId]];
@@ -118,18 +114,15 @@ typedef enum : NSUInteger {
     return YES;
 }
 
-- (void)loadDeveloperId:(NSString *)developerId
-{
+- (void)loadDeveloperId:(NSString *)developerId {
     [self loadAppId:developerId iTunesRequestType:ITunesRequestTypeSoftware];
 }
 
-- (void)loadAppId:(NSString *)appId
-{
+- (void)loadAppId:(NSString *)appId {
     [self loadAppId:appId iTunesRequestType:ITunesRequestTypeUnknown];
 }
 
-- (void)loadAppIds:(NSArray *)appIds
-{
+- (void)loadAppIds:(NSArray *)appIds {
     itemsToReturn = [appIds copy];
     for (NSString *appId in appIds) {
         if (![self loadAppId:appId iTunesRequestType:ITunesRequestTypeUnknown])
@@ -137,8 +130,7 @@ typedef enum : NSUInteger {
     }
 }
 
-- (void)loadAppIdsFromCache:(NSArray *)appIds
-{
+- (void)loadAppIdsFromCache:(NSArray *)appIds {
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[appIds count]];
     for (NSString *appId in appIds) {
         NSArray *json = [[NSArray alloc] initArrayFromCacheWithKey:appId];
@@ -150,13 +142,11 @@ typedef enum : NSUInteger {
     [self sendDoneNotification];
 }
 
-- (void)sendDoneNotification
-{
+- (void)sendDoneNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:kMoreFromDeleveloperDone object:self userInfo:(_jsonResults ? @{@"results" : _jsonResults} : nil)];
 }
 
-- (void)reachabilityChanged:(NSNotification* )notification
-{
+- (void)reachabilityChanged:(NSNotification* )notification {
     Reachability* curReach = [notification object];
     NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
     isReachable = [curReach isReachable];
