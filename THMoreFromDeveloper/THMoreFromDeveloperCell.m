@@ -71,9 +71,19 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    [self.appNameIcon setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
+    [self.appNameLabel setFrame:CGRectMake(0, self.frame.size.height-20, self.frame.size.width, 20)];
+    
     // TODO http://stackoverflow.com/questions/10563986/uiimage-with-rounded-corners
     [self.appNameIcon.layer setMasksToBounds:YES];
     [self.appNameIcon.layer setCornerRadius:30.0];
+}
+
+#pragma mark - Cleanup
+
+- (void)dealloc {
+    [self setAppNameIcon:nil];
+    [self setAppNameLabel:nil];
 }
 
 @end

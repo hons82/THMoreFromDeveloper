@@ -2,3 +2,4 @@ platform :ios, '6.1'
 
 pod 'Reachability', '~> 3.2'
 pod 'SDWebImage', '~> 3.7.1'
+pod 'THCache', '~> 0.9.0'

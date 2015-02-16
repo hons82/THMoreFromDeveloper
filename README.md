@@ -27,7 +27,13 @@ pod 'THMoreFromDeveloper', '~> 0.1.1'
 
 ### Manually
 
-Or copy the `THMoreFromDeveloper/` directory from this repo into your project.
+Or copy the `THMoreFromDeveloper/` directory from this repo into your project and add the following dependencies
+
+# Dependencies
+
+- [THCache](https://github.com/hons82/THCache)
+- [SDWebImage](https://github.com/rs/SDWebImage)
+- [Reachability](https://github.com/tonymillion/Reachability)
 
 # Features
 
@@ -42,11 +48,6 @@ Or copy the `THMoreFromDeveloper/` directory from this repo into your project.
 - Load a List of AppIds
 - Load all Apps from a Developer[http://itunes.apple.com/lookup?id=833472034&lang=en&country=US&entity=software](http://itunes.apple.com/lookup?id=833472034&lang=en&country=US&entity=software)
 - Results are cached and reused based on [Reachability](https://github.com/tonymillion/Reachability)
-
-# Dependencies
-
-- [SDWebImage](https://github.com/rs/SDWebImage)
-- [Reachability](https://github.com/tonymillion/Reachability)
 
 # Usage
 

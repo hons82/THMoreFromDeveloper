@@ -32,7 +32,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jdR-xI-evI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jdR-xI-evI">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         </imageView>
                                     </subviews>
@@ -57,6 +57,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="emptyIcon.png" width="128" height="128"/>
+        <image name="emptyIcon" width="128" height="128"/>
     </resources>
 </document>

@@ -68,6 +68,10 @@
     return [self.model jsonResults] ? [self.model.jsonResults count] : 0;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return (indexPath.row % 2 == 0 ? CGSizeMake(128.0, 148.0) : CGSizeMake(100.0, 120.0));
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"CellType used: %@",(indexPath.row % 2 == 0 ? @"MoreFromDeveloperCellManual" : @"MoreFromDeveloperCell"));
     THMoreFromDeveloperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(indexPath.row % 2 == 0 ? @"MoreFromDeveloperCellManual" : @"MoreFromDeveloperCell") forIndexPath:indexPath];
