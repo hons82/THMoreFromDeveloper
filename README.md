@@ -51,7 +51,32 @@ Or copy the `THMoreFromDeveloper/` directory from this repo into your project an
 
 # Usage
 
-Have a look at the Example Project. It shows how to integrate this classes with the rest of your project
+``` objective-c
+#import "THMoreFromDeveloperModel.h"
+
+@interface THMoreFromDeveloperCollectionViewController ()
+@property (nonatomic,strong)THMoreFromDeveloperModel *model;
+@end
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.model = [[THMoreFromDeveloperModel alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(appIdsLoaded:)
+                                                 name:kMoreFromDeleveloperDone
+                                               object: nil];
+	// Load it with APPids
+	[self.model loadAppIds:@[@"509943167",@"875251011",@"420636551",@"645859810",@"767319014"]];
+	// Load it with a single Developer ID
+	// [self.model loadDeveloperId:@"833472034"];
+}
+
+- (void)appIdsLoaded:(NSNotification* )notification {
+    // Show data using [self.model jsonResults]
+}
+```
+
+for more details please have a look at the Example. It shows how to integrate this classes with the rest of your project.
 
 #Contributions
 

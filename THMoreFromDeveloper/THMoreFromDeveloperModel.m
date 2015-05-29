@@ -71,9 +71,11 @@ typedef enum : NSUInteger {
     NSURLRequest *request;
     switch (type) {
         case ITunesRequestTypeSoftware:
+            // https://itunes.apple.com/lookup?country=IT&lang=en&id=833472034&entity=software
             request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?country=%@&lang=%@&id=%@&entity=software",[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode],[[NSLocale preferredLanguages] objectAtIndex:0],appId]]];
             break;
         default:
+            // https://itunes.apple.com/lookup?country=IT&lang=en&id=833472031
             request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?country=%@&lang=%@&id=%@",[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode],[[NSLocale preferredLanguages] objectAtIndex:0],appId]]];
             break;
     }

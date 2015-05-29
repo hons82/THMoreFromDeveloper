@@ -38,14 +38,17 @@
     moreFromDeveloperIds = @[@"833472034"];
 #endif
     self.model = [[THMoreFromDeveloperModel alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(appIdsLoaded:) name:kMoreFromDeleveloperDone object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(appIdsLoaded:)
+                                                 name:kMoreFromDeleveloperDone
+                                               object: nil];
     
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
     // Tell the reachability that we want to be reachable on 3G/EDGE/CDMA
     reach.reachableOnWWAN = YES;
     // Here we set up a NSNotification observer. The Reachability that caused the notification
     // is passed in the object parameter
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self  
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
