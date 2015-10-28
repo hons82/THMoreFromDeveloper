@@ -1,18 +1,18 @@
 PODS:
   - Reachability (3.2)
-  - SDWebImage (3.7.2):
-    - SDWebImage/Core (= 3.7.2)
-  - SDWebImage/Core (3.7.2)
-  - THCache (0.9.0)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - THCache (0.9.1)
 
 DEPENDENCIES:
   - Reachability (~> 3.2)
   - SDWebImage (~> 3.7.1)
-  - THCache (~> 0.9.0)
+  - THCache
 
 SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
-  THCache: a8edfd366257c6b6943788feb902258aa6aa9a6b
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  THCache: 7e23f78df992f8f3021fbb10b80f8371082e7276
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0
